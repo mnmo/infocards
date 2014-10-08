@@ -2,18 +2,23 @@
 
 class Gecka_Submenu_Shortcodes {
 	
+	static $cache = array ();
+	
 	public function __construct()  {
 		
 		add_shortcode( 'submenu', 	array( $this, 'submenu') );
 		add_shortcode( 'menu', 	array( $this, 'menu') );
-        add_action( 'gk-menu', array( $this,'gk_menu'), 10, 1 );
+        add_action( 'gk-menu', array( $this, 'gk_menu'), 10, 1 );
 				
 	}
 	
 	public function menu ($Attributes) {
 
+		$key = serialize($Attributes);
+		if( isset( self::$cache[$key] ) ) return self::$cache[$key];
+		
 		$Menu = new Gecka_Submenu_Submenu();
-		return $Menu->Get($Attributes);
+		return self::$cache[$key] = $Menu->Get($Attributes);
 		
 	}
 	

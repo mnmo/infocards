@@ -6,21 +6,28 @@ class GKSM_Widget_Custom_Menu extends WP_Widget {
 	                                    'auto_title'=>0, 
 	                                    'show_parent'=>0,
 	                                    'show_description'=>0, 
-	                                     );
+										'class'=>''
+	                                  );
 	
 	public function GKSM_Widget_Custom_Menu () {
+		
 		$widget_ops = array('classname' => 'gksm-custom-menu-widget', 'description' => __('Use this widget to add one of your custom menus as a widget.'));
-		parent::WP_Widget('gksm-custom-menu-widget', __('Custom Menu') . ' ' .  __('[advanced]', Gecka_Submenu::Domain ), $widget_ops);
+		$control_ops = array('width' => 350, 'height' => 350);
+		parent::WP_Widget('gksm-custom-menu-widget', __('Custom Menu') . ' ' .  __('[advanced]', Gecka_Submenu::Domain ), $widget_ops, $control_ops);
 	    
 	    // ajax select update
 	    add_action('wp_ajax_gksm_update', array($this, 'submenuOptionsAjax'));
 	    
-	    // needed javasccript for widget admin      
-	    wp_register_script('gecka-submenu-widget-custom-menu', GKSM_URL . '/javascripts/widget-custom-menu.js', 'jquery' );
-        
+	    // needed javasccript & css for widget admin      
+	    $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
+	    
+	    wp_register_script('gecka-submenu-widget-custom-menu', GKSM_URL . "/javascripts/widget-custom-menu$suffix.js", array('jquery'), GKSM_VERSION );
+	    wp_register_style('gecka-submenu-widget-custom-menu', GKSM_URL . "/css/widget-custom-menu$suffix.css", array(), GKSM_VERSION);
+	    
         add_action( "admin_print_scripts-widgets.php", array($this, 'admin_print_scripts') );
         
-	    
+        add_filter( 'dynamic_sidebar_params', array($this, 'dynamic_sidebar_params') );
+        
     }
     
     public function admin_print_scripts () {
@@ -30,7 +37,7 @@ class GKSM_Widget_Custom_Menu extends WP_Widget {
 	        'custom_menu_nonce' => wp_create_nonce( 'gksm_widget_custom_menu_nonce' ),
 	                            )
                         );
-
+        wp_enqueue_style('gecka-submenu-widget-custom-menu');
     }
     
     public function widget($args, $instance) {
@@ -54,9 +61,9 @@ class GKSM_Widget_Custom_Menu extends WP_Widget {
                 $instance[$field] = 1;
         }
         
-        $instance['depth'] = (int) $new_instance['depth'];
-        
-        $instance['show_description'] = $new_instance['show_description'];
+        $instance['show_description'] 	= $new_instance['show_description'];
+        $instance['class'] 				= $new_instance['class'];
+        $instance['depth'] 				= (int) $new_instance['depth'];
         
         return $instance;
     }
@@ -69,7 +76,8 @@ class GKSM_Widget_Custom_Menu extends WP_Widget {
         $menu      = isset( $instance['menu'] ) ? $instance['menu'] : '';
         $submenu   = isset( $instance['submenu'] ) ? $instance['submenu'] : '0';
         $depth     = isset( $instance['depth'] ) ? $instance['depth'] : 0;
-        
+        $class     = isset( $instance['class'] ) ? $instance['class'] : 0;
+
          // Get menus
         $menus = get_terms( 'nav_menu', array( 'hide_empty' => false ) );
 
@@ -80,7 +88,7 @@ class GKSM_Widget_Custom_Menu extends WP_Widget {
         }
    
         ?>
-            
+            <div class="gksm">
             <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
             </p>
@@ -112,22 +120,28 @@ class GKSM_Widget_Custom_Menu extends WP_Widget {
             ?>
             </select></p>
             
-            <p><label for="<?php echo $this->get_field_id('depth'); ?>"><?php _e( 'Depth:', Gecka_Submenu::Domain ); ?></label>
+            <p class="description-thin"><label for="<?php echo $this->get_field_id('depth'); ?>"><?php _e( 'Depth:', Gecka_Submenu::Domain ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('depth'); ?>" name="<?php echo $this->get_field_name('depth'); ?>" type="text" value="<?php echo $depth; ?>" />
             </p>
             
-            <p>         
+            <p class="description-thin">         
             <!-- <input class="checkbox" type="checkbox" <?php checked($instance['show_parent'], true) ?> id="<?php echo $this->get_field_id('show_parent'); ?>" name="<?php echo $this->get_field_name('show_parent'); ?>" />
 	        <label for="<?php echo $this->get_field_id('show_parent'); ?>"><?php _e('Show parent item', Gecka_Submenu::Domain); ?></label><br />
 	         -->
-	        
 	        <label for="<?php echo $this->get_field_id('show_description'); ?>"><?php _e('Show description', Gecka_Submenu::Domain); ?>:</label><br />
 	        <select name="<?php echo $this->get_field_name('show_description'); ?>" id="<?php echo $this->get_field_id('show_description'); ?>">
 	            <option value="0" <?php selected('0', $instance['show_description']) ?>><?php _e('No'); ?></option>
 	            <option value="into_link" <?php selected('into_link', $instance['show_description']) ?>><?php _e('Into link element', Gecka_Submenu::Domain); ?></option>
 	            <option value="into_li" <?php selected('into_li', $instance['show_description']) ?>><?php _e('Into li element', Gecka_Submenu::Domain); ?></option>
 	        </select>
-	        </p>
+	        
+	        <p class="description-thin"><label for="<?php echo $this->get_field_id('class'); ?>"><?php _e( 'Class:', Gecka_Submenu::Domain ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('class'); ?>" name="<?php echo $this->get_field_name('class'); ?>" type="text" value="<?php echo $class; ?>" />
+            </p>
+            
+            <p class="description-thin">         
+            </p>
+	        </div>
         
         <?php 
     }
@@ -170,11 +184,51 @@ class GKSM_Widget_Custom_Menu extends WP_Widget {
         $options = '<option value="0">' . __('Nav menu root', Gecka_Submenu::Domain) .'</option>';
         $options .= '<option value="current"'.selected('current', $default).'>' . __('Current page', Gecka_Submenu::Domain) .'</option>';
         $options .= '<option value="top"'.selected('top', $default).'>' . __('Current page\'s top parent', Gecka_Submenu::Domain) .'</option>';
-        $options .= call_user_func_array( array(&$walker, 'walk'), $args );  
+        $options .= call_user_func_array( array($walker, 'walk'), $args );  
         
         return $options;
         
     }
 	
-	
+    public function dynamic_sidebar_params($params) {
+    	global $wp_registered_sidebars, $wp_registered_widgets;
+    
+    	$widget_id = $params[0]['widget_id'];
+    	$widget = $wp_registered_widgets[$widget_id];
+    
+    	// is our widget
+    	if( !empty($widget['callback']) && is_array($widget['callback'])
+    			&& $widget['callback'][0] instanceof GKSM_Widget_Custom_Menu ) {
+    
+    		//get widget instance
+    		$instance = $widget['callback'][0]->get_settings();
+    
+    		if (! array_key_exists($params[1]['number'], $instance)) {
+    			return $params;
+    		}
+    
+    		$instance = $instance[$params[1]['number']];
+    		if( empty($instance['class']) ) return $params;
+    
+    		$class = $instance['class'];
+    
+    		// from wp-includes/widgets.php
+    		$classname_ = '';
+    		foreach ( (array) $widget['classname'] as $cn ) {
+    			if ( is_string($cn) )
+    				$classname_ .= '_' . $cn;
+    			elseif ( is_object($cn) )
+    			$classname_ .= '_' . get_class($cn);
+    		}
+    		$classname_ = ltrim($classname_, '_');
+    
+    		// we add our class
+    		$classname_ .= ' ' . $class;
+    
+    		$before_widget = $wp_registered_sidebars[$params[0]['id']]['before_widget'];
+    		$params[0]['before_widget'] = sprintf($before_widget, $widget['id'], $classname_);
+    	}
+    
+    	return $params;
+    }	
 }
