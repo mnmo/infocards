@@ -90,6 +90,11 @@ wp_enqueue_script( 'infocards-script', get_template_directory_uri() . '/js/scrip
   	  </div>
 			<hgroup>
 				<h1 id="site-title"><span><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span></h1>
+                
+                <div class="menuTop">
+                <a href="https://www.infocards.com.br/webcards3">Clientes</a> &nbsp;|&nbsp; <a href="https://www.infocards.com.br/webcards3">Conveniados</a> &nbsp;|&nbsp; <a href="https://www.infocards.com.br/webcards3">Estabelecimentos</a> &nbsp;|&nbsp; <a href="https://www.infocards.com.br/webcar/servlet/hsuf001a">Portadores</a>
+                </div>
+                
 			</hgroup>
 
 			<nav id="access" role="navigation">

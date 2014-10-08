@@ -66,6 +66,27 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 :focus {/* remember to define focus styles! */
 	outline: 0;
 }
+
+.menuTop {
+float: right;
+margin-top: -60px;
+margin-right: 48px;
+font-size: 10px;
+background: #fff;
+padding-left: 13px;
+padding-right: 13px;
+padding-top: 3px;
+padding-bottom: 3px;
+font-family: arial;
+color: rgba(102, 102, 102, 0.59);
+
+}
+
+.menuTop a:visited {color: rgba(102, 102, 102, 0.59); text-decoration:none; }
+.menuTop a:link {color: rgba(102, 102, 102, 0.59); text-decoration:none; }
+.menuTop a:hover {color: #2d84c1; text-decoration:none; }
+
+
 body {
 	background: #fff;
 	line-height: 1;
