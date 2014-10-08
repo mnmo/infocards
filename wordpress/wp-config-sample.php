@@ -19,10 +19,10 @@
 define('DB_NAME', 'nomedoBD');
 
 /** Usuário do banco de dados MySQL */
-define('DB_USER', 'usuarioMySQL');
+define('DB_USER', 'username_here');
 
 /** Senha do banco de dados MySQL */
-define('DB_PASSWORD', 'senha');
+define('DB_PASSWORD', 'password_here');
 
 /** nome do host do MySQL */
 define('DB_HOST', 'localhost');
@@ -42,14 +42,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'coloque sua frase única aqui');
-define('SECURE_AUTH_KEY',  'coloque sua frase única aqui');
-define('LOGGED_IN_KEY',    'coloque sua frase única aqui');
-define('NONCE_KEY',        'coloque sua frase única aqui');
-define('AUTH_SALT',        'coloque sua frase única aqui');
-define('SECURE_AUTH_SALT', 'coloque sua frase única aqui');
-define('LOGGED_IN_SALT',   'coloque sua frase única aqui');
-define('NONCE_SALT',       'coloque sua frase única aqui');
+define('AUTH_KEY',         'put your unique phrase here');
+define('SECURE_AUTH_KEY',  'put your unique phrase here');
+define('LOGGED_IN_KEY',    'put your unique phrase here');
+define('NONCE_KEY',        'put your unique phrase here');
+define('AUTH_SALT',        'put your unique phrase here');
+define('SECURE_AUTH_SALT', 'put your unique phrase here');
+define('LOGGED_IN_SALT',   'put your unique phrase here');
+define('NONCE_SALT',       'put your unique phrase here');
 
 /**#@-*/
 
@@ -61,15 +61,6 @@ define('NONCE_SALT',       'coloque sua frase única aqui');
  */
 $table_prefix  = 'wp_';
 
-/**
- * O idioma localizado do WordPress é o inglês por padrão.
- *
- * Altere esta definição para localizar o WordPress. Um arquivo MO correspondente ao
- * idioma escolhido deve ser instalado em wp-content/languages. Por exemplo, instale
- * pt_BR.mo em wp-content/languages e altere WPLANG para 'pt_BR' para habilitar o suporte
- * ao português do Brasil.
- */
-define('WPLANG', 'pt_BR');
 
 /**
  * Para desenvolvedores: Modo debugging WordPress.
