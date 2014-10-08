@@ -1,20 +1,25 @@
-
 # Geral
 
-* OK - link subpaginas
-* OK - botao saiba mais
-* OK - iphone zoado
-* OK - ordem do destaque, talvez usar pages
-* OK - cache plugin
-* OK - investigar se vale a pena usar CurvyCorners http://davidwalsh.name/css-rounded-corners
-* fallback da animação
 
-# Aba inferiores
 
-* cores: 92c7e7 e 167db3, .disabled = 0.3 opacity
-* quando o cara clicar no contato, se ele estiver num telefone, seria legal ligar. Senão, abrir o email. Se clicar no endereço, abre no google maps. Q tal?
 
-# Plugins usados
+
+
+
+
+
+
+
+# Notas para ambiente de dev
+
+## Desabilitar FTP para atualização/escrita das coisas
+
+- Lembrar de colocar isto no wp-config.php:
+```
+define('FS_METHOD', 'direct');
+```
+
+## Plugins usados
 
 * submenu plugin
   * http://wordpress.org/extend/plugins/gecka-submenu/
