@@ -383,13 +383,20 @@ body.slug-home #colophon .abas{
     font-size: 16px;
     letter-spacing: -1px;
     text-align:center;
+    cursor: pointer;
 }
 .ninja-forms-form,
 .ninja-forms-response-msg{
+    display:none;
     float:left;
     width:100%;
     border-radius: 10px 0 0 0;
 }
+.opened .ninja-forms-form,
+.opened .ninja-forms-response-msg{
+    display: block;
+}
+
 .ninja-forms-form{
     padding-right: 30px;
     padding-left:30px;

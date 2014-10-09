@@ -61,6 +61,31 @@ function fixIECorners(){
   }
 }
 
+function contactFormTabClicked(){
+    // console.log('contact tab clicked');
+    var tabElement = $(this),
+        wrapElement = tabElement.parents('.ninja-forms-form-wrap').first(),
+        responseElement = wrapElement.find('.ninja-forms-response-msg').first(),
+        formElement = wrapElement.find('.ninja-forms-form').first(),
+        isOpen = wrapElement.hasClass('opened'),
+        hasResponse = responseElement.html().length > 0;
+
+    // console.log('isOpen?', isOpen);
+    if (!isOpen){
+        wrapElement.addClass('opened');
+    } else {
+        wrapElement.removeClass('opened');
+        //if form was submitted and a response message is visible,
+        //clear response message and make the form visible again
+        // console.log('hasResponse', hasResponse);
+        if (hasResponse){
+            // console.log('delete the response and bring the form back');
+            formElement.attr('style', '');
+            responseElement.html('');
+        }
+    }
+
+}
 //init
 $(document).ready( function() {
   $(window).load(function() { $('body').addClass('ready'); });
@@ -68,6 +93,7 @@ $(document).ready( function() {
   changeViewport();
   fixIECorners();
   if ($('body').hasClass('slug-home')){ resetAutoPagination(); }
+  $('.ninja-forms-form-title').click(contactFormTabClicked);
 });
 
 })(jQuery);
