@@ -357,6 +357,96 @@ body.slug-home #colophon .abas{
   font-weight:normal;
   line-height:15px;
 }
+
+/* =Footer Contact Form
+----------------------------------------------- */
+.ninja-forms-cont{
+    position:fixed !important;
+    z-index:10;
+    width:340px;
+    bottom:0;
+    right: 110px;
+}
+.ninja-forms-form-title,
+.ninja-forms-form,
+.ninja-forms-response-msg{
+    background-color:#92C7E7;
+}
+.ninja-forms-form-title{
+    display: block;
+    border-radius: 10px 10px 0px 0px;
+    width: 83px;
+    margin-left: 257px;
+    height: 30px;
+    line-height: 30px;
+    font-family: "Museo-700";
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-align:center;
+}
+.ninja-forms-form,
+.ninja-forms-response-msg{
+    float:left;
+    width:100%;
+    border-radius: 10px 0 0 0;
+}
+.ninja-forms-form{
+    padding-right: 30px;
+    padding-left:30px;
+    padding-top:20px;
+}
+.ninja-forms-field p,
+.ninja-forms-response-msg p{
+    font-family: "Museo-300";
+    font-size: 15px;
+}
+.ninja-forms-field p strong,
+.ninja-forms-response-msg p strong{
+    font-family: "Museo-700";
+    font-weight: normal;
+}
+.ninja-forms-form input,
+.ninja-forms-form textarea{
+    font-family: "Museo-300";
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+    border-radius:5px;
+    border-width:0px !important;
+}
+.ninja-forms-form textarea{
+    padding-top: 1em !important;
+}
+.input-counter,
+.ninja-forms-field p,
+.ninja-forms-response-msg p{
+    color: #00466d;
+}
+.submit-wrap{
+    float:right;
+}
+.submit-wrap input{
+    font-family: "Museo-700";
+    font-size: 16px;
+    letter-spacing: -1px;
+    background-color: #0071ab;
+    color:#FFFFFF;
+}
+.ninja-forms-required-items{
+    display:none;
+}
+
+/*debug
+body{
+    background-image:url(./images/layouts/08-form-contato-aberto.png);
+    background-image:url(./images/layouts/14-form-contato-falha-no-enviado-sucesso.png);
+    background-repeat:no-repeat;
+    background-position:center top;
+}
+#page{
+    opacity:0.5;
+}
+*/
+
 /* =Home
 ----------------------------------------------- */
 /* ==Home:Destaques Carrocel */
