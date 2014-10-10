@@ -61,6 +61,9 @@ ln -s /var/infocards/wordpress /var/www
   - Gecka Submenu
   - Ninja Forms
 
+- SMTP
+  - install this plugin so we don't have to configure sendmail, postfix and waste time
+  - https://wp-ecommerce.net/easy-wordpress-smtp-send-emails-from-your-wordpress-site-using-a-smtp-server-2197
 
 #### 4.1.4 Theme
 
