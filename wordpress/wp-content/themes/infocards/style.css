@@ -361,12 +361,20 @@ body.slug-home #colophon .abas{
 /* =Footer Contact Form
 ----------------------------------------------- */
 .ninja-forms-cont{
-    position:fixed !important;
+    position:absolute !important;
     z-index:10;
     width:340px;
     top:92px;
     right: 50%;
     margin-right: -490px;
+}
+.entry-content .ninja-forms-cont{
+    position:relative !important;
+    width:auto;
+    margin-right: none;
+    top:auto;
+    right: auto;
+
 }
 .ninja-forms-form-title,
 .ninja-forms-form,
@@ -392,11 +400,18 @@ body.slug-home #colophon .abas{
     width:100%;
     border-radius: 0 0 10px 10px;
 }
+.entry-content .ninja-forms-form,
+.entry-content .ninja-forms-response-msg{
+    width: 823px;
+}
+
 .opened .ninja-forms-response-msg.ninja-forms-error-msg{
     display:none;
 }
 .opened .ninja-forms-form,
-.opened .ninja-forms-response-msg{
+.opened .ninja-forms-response-msg,
+.entry-content .ninja-forms-form,
+.entry-content .ninja-forms-response-msg{
     display: block;
 }
 
