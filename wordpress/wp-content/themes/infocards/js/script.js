@@ -61,7 +61,8 @@ function fixIECorners(){
   }
 }
 
-function contactFormTabClicked(){
+function contactFormTabClicked(event){
+    event.preventDefault();
     // console.log('contact tab clicked');
     // var tabElement = $(this),
         // wrapElement = tabElement.parents('.ninja-forms-form-wrap').first(),
