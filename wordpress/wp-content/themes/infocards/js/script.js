@@ -63,8 +63,9 @@ function fixIECorners(){
 
 function contactFormTabClicked(){
     // console.log('contact tab clicked');
-    var tabElement = $(this),
-        wrapElement = tabElement.parents('.ninja-forms-form-wrap').first(),
+    // var tabElement = $(this),
+        // wrapElement = tabElement.parents('.ninja-forms-form-wrap').first(),
+    var wrapElement = $('.ninja-forms-form-wrap').first(),
         responseElement = wrapElement.find('.ninja-forms-response-msg').first(),
         formElement = wrapElement.find('.ninja-forms-form').first(),
         isOpen = wrapElement.hasClass('opened'),
@@ -93,7 +94,7 @@ $(document).ready( function() {
   changeViewport();
   fixIECorners();
   if ($('body').hasClass('slug-home')){ resetAutoPagination(); }
-  $('.ninja-forms-form-title').click(contactFormTabClicked);
+  $('a[href="#contact-form"]').click(contactFormTabClicked);
 });
 
 })(jQuery);

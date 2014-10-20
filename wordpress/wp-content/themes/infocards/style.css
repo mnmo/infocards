@@ -174,7 +174,7 @@ body.slug-home{
 #site-header #bg-strip-left{
   width:50%;
   right:50%;
-  margin-right:484px;
+  margin-right:521px;
 }
 #site-header #bg-strip-right{
   width:100%;
@@ -190,7 +190,7 @@ body.slug-home{
   overflow:hidden;
   top:-60px;
   left:50%;
-  margin-left:-484px;
+  margin-left:-521px;
 }
 #site-title a{
   display:block;
@@ -216,7 +216,7 @@ body.slug-home{
 }
 #access {
   height:32px;
-  width:966px;
+  width:1040px;
   margin: auto;
   overflow:hidden;
 }
@@ -361,10 +361,10 @@ body.slug-home #colophon .abas{
 /* =Footer Contact Form
 ----------------------------------------------- */
 .ninja-forms-cont{
-    position:fixed !important;
+    position:absolute !important;
     z-index:10;
     width:340px;
-    bottom:0;
+    top:92px;
     right: 110px;
 }
 .ninja-forms-form-title,
@@ -373,9 +373,8 @@ body.slug-home #colophon .abas{
     background-color:#92C7E7;
 }
 .ninja-forms-form-title{
-    display: block;
-    border-radius: 10px 10px 0px 0px;
-    width: 83px;
+    display: none;
+    /*width: 83px;
     margin-left: 257px;
     height: 30px;
     line-height: 30px;
@@ -383,14 +382,17 @@ body.slug-home #colophon .abas{
     font-size: 16px;
     letter-spacing: -1px;
     text-align:center;
-    cursor: pointer;
+    cursor: pointer;*/
 }
 .ninja-forms-form,
 .ninja-forms-response-msg{
     display:none;
     float:left;
     width:100%;
-    border-radius: 10px 0 0 0;
+    border-radius: 0 0 10px 10px;
+}
+.opened .ninja-forms-response-msg.ninja-forms-error-msg{
+    display:none;
 }
 .opened .ninja-forms-form,
 .opened .ninja-forms-response-msg{
