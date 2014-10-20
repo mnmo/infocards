@@ -361,11 +361,12 @@ body.slug-home #colophon .abas{
 /* =Footer Contact Form
 ----------------------------------------------- */
 .ninja-forms-cont{
-    position:absolute !important;
+    position:fixed !important;
     z-index:10;
     width:340px;
     top:92px;
-    right: 110px;
+    right: 50%;
+    margin-right: -490px;
 }
 .ninja-forms-form-title,
 .ninja-forms-form,
